@@ -1,25 +1,26 @@
-﻿@{
+﻿@model ComicBook.Models.ComicBooks
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Comic Book Detail";
+    ViewBag.Title = Model.DisplayText;
     
 }
 
 <!DOCTYPE html>
 
 
-<h1>@ViewBag.SeriesTitle</h1>
-<h2>Issue Number #@ViewBag.IssueNumber</h2>
+<h1>@Model.SeriesTitle</h1>
+<h2>Issue Number #@Model.IssueNumber</h2>
 <h3>Description:</h3>
 <div>
-    @Html.Raw(ViewBag.Description)
+    @Html.Raw(Model.DescriptionHtml)
 </div>
-@if (ViewBag.Artists.Length > 0)
+@if (Model.Artists.Length > 0)
 {
     <h3>Artists:</h3>
     <ul>
-        @foreach (var artist in ViewBag.Artists)
+        @foreach (var artist in Model.Artists)
         {
-        <li>@artist</li>
+        <li>@artist.Role : @artist.Name</li>
         }
     </ul>
 
