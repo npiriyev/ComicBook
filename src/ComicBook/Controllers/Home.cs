@@ -12,7 +12,7 @@ namespace ComicBook.Controllers
         {
             var content = new ContentResult();
            
-            return "Hi there";
+            return "Hi there from Home";
         }
 
     }
