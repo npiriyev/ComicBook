@@ -1,0 +1,23 @@
+﻿@model ComicBook.Models.ComicBooks[]
+@{
+    ViewBag.Title = "Comic Books";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <h4>@Html.ActionLink(item.DisplayText, "Detail", new {id = item.Id })</h4>
+            <a href="@Url.Action("Detail", new { id = item.Id })" >
+                <img src="/Images/@item.CoverImageFileName"
+                     alt="@item.DisplayText"
+                     class="img-responsive" />
+            </a>
+        </div>
+
+    }
+
+</div>
+

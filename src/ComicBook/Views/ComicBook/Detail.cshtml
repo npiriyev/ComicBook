@@ -2,27 +2,41 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Model.DisplayText;
-    
+    ViewBag.ShowBackBar = true;
+
 }
 
 <!DOCTYPE html>
 
+<h2>@Model.DisplayText</h2>
 
-<h1>@Model.SeriesTitle</h1>
-<h2>Issue Number #@Model.IssueNumber</h2>
-<h3>Description:</h3>
-<div>
-    @Html.Raw(Model.DescriptionHtml)
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <h5><label>Series Title:</label>@Model.SeriesTitle</h5>
+            <h5><label>Issue #:</label> @Model.IssueNumber</h5>
+            <h5><label>Favorite:</label> @(Model.Favorite ? "Yes" : "No")</h5>
+            @if (Model.Artists.Length > 0)
+                {
+                        <h5>Artists:</h5>
+                        <div>
+                            <ul>
+                                @foreach (var artist in Model.Artists)
+                        {
+                            <li>@artist.Role : @artist.Name</li>
+                        }
+                            </ul>
+                        </div>
+
+                }
+        </div>
+        <h5>@Html.Raw(Model.DescriptionHtml)</h5>
+        <p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives...<strong>will Peter Parker?</strong></p>
+    </div>
+    <div class="col-md-6">
+        <img src="/Images/@Model.CoverImageFileName"
+             alt="@Model.DisplayText" class="img-responsive" />
+    </div>
 </div>
-@if (Model.Artists.Length > 0)
-{
-    <h3>Artists:</h3>
-    <ul>
-        @foreach (var artist in Model.Artists)
-        {
-        <li>@artist.Role : @artist.Name</li>
-        }
-    </ul>
 
-}
 
